@@ -6,7 +6,7 @@ const app = express()
 app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello Luis!!!' })
+  res.json({ message: 'Hello Luis Test!' })
 })
 
 const port = Number(process.env.PORT ?? 3333)
