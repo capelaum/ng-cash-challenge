@@ -1,33 +1,58 @@
-version: '2'
+version: '3'
 
 services:
-  backend:
-    container_name: backend
-    build: .
+  web:
+    container_name: ng_cash_web
+    image: ng-cash-web
+    restart: unless-stopped
+    build:
+      context: web
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./web/src:/app/web/src
+      - ./web/public:/app/web/public
+    networks:
+      - ng_cash_network
+    depends_on:
+      - api
+
+  api:
+    container_name: ng_cash_api
+    image: ng-cash-api
+    restart: unless-stopped
+    build:
+      context: api
+      dockerfile: Dockerfile
     ports:
       - 3333:3333
-      - 9229:9229 # debugger port
-
+      - 9229:9229 # debugger
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-
-    command: yarn dev
-
+      - ./api:/app/api
+      - /app/api/node_modules
     environment:
       PORT: 3333
-      DATABASE_URL: postgres://docker:docker@postgres:5432/db_name_dev
-
+      DATABASE_URL: postgres://docker:docker@postgres:5432/ng_cash_dev
+    networks:
+      - ng_cash_network
     depends_on:
       - postgres
 
   postgres:
-    container_name: postgres
+    container_name: ng_cash_db
     image: postgres:14-alpine
+    restart: always
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: db_name_dev
+      POSTGRES_DB: ng_cash_dev
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
-      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - ng_cash_network
+
+networks:
+  ng_cash_network:

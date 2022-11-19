@@ -1,8 +1,10 @@
-FROM node:18.12
+FROM node:18
 
-WORKDIR /usr/src/app
+WORKDIR /app/api
 
-COPY package.json yarn.lock ./
+COPY package.json .
+COPY yarn.lock .
+
 RUN yarn install
 
 COPY prisma/schema.prisma ./prisma/
@@ -11,4 +13,5 @@ RUN npx prisma generate
 COPY . .
 
 EXPOSE 3333
-CMD [ "yarn", "start" ]
+
+CMD [ "yarn", "start:docker" ]
