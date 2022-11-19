@@ -2,6 +2,7 @@ version: '2'
 
 services:
   backend:
+    container_name: backend
     build: .
     ports:
       - 3333:3333
@@ -21,6 +22,7 @@ services:
       - postgres
 
   postgres:
+    container_name: postgres
     image: postgres:14-alpine
     ports:
       - 5432:5432
