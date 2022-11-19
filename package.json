@@ -13,7 +13,11 @@
     "db:migrate": "yarn prisma migrate dev",
     "db:reset": "yarn prisma migrate reset",
     "docker:db:migrate": "docker compose exec backend yarn db:migrate",
-    "docker:db:reset": "yarn prisma migrate reset"
+    "docker:db:reset": "yarn prisma migrate reset",
+    "docker:db:seed": "docker compose exec backend yarn prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/scripts/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "4.6.1",
