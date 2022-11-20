@@ -1,19 +1,29 @@
-import { db } from 'database/prismaClient'
-import express from 'express'
+import cors from 'cors'
+import express, { NextFunction, Request, Response } from 'express'
+import 'express-async-errors'
 import morgan from 'morgan'
+import { routes } from 'routes'
+import { AppError } from 'shared/errors/AppError'
 
 const app = express()
 
 app.use(morgan('dev'))
 
-app.get('/', async (req, res) => {
-  const users = await db.user.findMany({
-    where: {
-      username: 'fowfdi'
-    }
-  })
+app.use(express.json())
 
-  res.json(users)
+app.use(cors())
+
+app.use(routes)
+
+app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
+  if (err instanceof AppError) {
+    return res.status(err.statusCode).json({ message: err.message })
+  }
+
+  return res.status(500).json({
+    status: 'error',
+    message: `Internal server error - ${err.message}`
+  })
 })
 
 const port = Number(process.env.PORT ?? 3333)
