@@ -39,29 +39,21 @@ export class CreateUserUseCase {
     const user = await db.user.create({
       data: {
         username,
-        password: hashedPassword
+        password: hashedPassword,
+        account: {
+          create: {
+            balance: 100
+          }
+        }
       }
     })
 
     if (!user) {
       throw new AppError(
-        'Não foi possível cadastrar o usuário. Por favor, verifique os dados e tente novamente.',
+        'Não foi possível realizar o cadastro. Por favor, verifique os dados e tente novamente.',
         500
       )
     }
-
-    const account = await db.account.create({
-      data: {
-        balance: 100
-      }
-    })
-
-    await db.user.update({
-      where: { id: user.id },
-      data: {
-        accountId: account.id
-      }
-    })
 
     return user
   }
