@@ -9,7 +9,13 @@ app.use(morgan('dev'))
 app.get('/', async (req, res) => {
   const allPosts = await db.post.findMany()
 
-  res.json(allPosts)
+  const test = 'Test 777'
+
+  res.json({
+    allPosts,
+    test,
+    message: 'testeeee'
+  })
 })
 
 const port = Number(process.env.PORT ?? 3333)

@@ -1,23 +1,24 @@
 {
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
+    "rootDir": "./",
+    "baseUrl": "./src",
+    "target": "ESNext",
     "lib": ["ESNext"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"]
+    }
   },
-  "paths": {
-    "@modules/*": ["modules/*"],
-    "@config/*": ["config/*"],
-    "@errors/*": ["errors/*"],
-    "@utils/*": ["utils/*"]
-  },
-  "rootDir": "./",
-  "baseUrl": "./src",
-  "outDir": "./dist",
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.test.ts"],
-  "esModuleInterop": true,
-  "emitDecoratorMetadata": true,
-  "skipLibCheck": true,
-  "forceConsistentCasingInFileNames": true,
-  "resolveJsonModule": true
+  "exclude": ["node_modules", "**/*.test.ts"]
 }

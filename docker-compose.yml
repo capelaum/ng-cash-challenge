@@ -17,6 +17,7 @@ services:
       - ng_cash_network
     depends_on:
       - api
+    command: yarn dev
 
   api:
     container_name: ng_cash_api
@@ -38,6 +39,7 @@ services:
       - ng_cash_network
     depends_on:
       - postgres
+    command: yarn dev
 
   postgres:
     container_name: ng_cash_db

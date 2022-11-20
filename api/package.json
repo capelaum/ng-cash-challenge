@@ -4,11 +4,11 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0 --transpile-only --ignore-watch node_modules --respawn src/index.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0 --transpile-only --ignore-watch node_modules --respawn --watch src/index.ts",
     "build": "rimraf dist && swc ./src -d dist",
     "start": "node dist/index.js",
     "start:docker": "yarn build && yarn start",
-    "rebuild:backend": "docker compose build api && docker compose rm --stop api && docker compose up -d api",
+    "rebuild:api": "docker compose build api && docker compose rm --stop api && docker compose up -d api",
     "db:console": "docker compose exec postgres psql -h localhost -U docker -d ng_cash_dev",
     "db:migrate": "yarn prisma migrate dev",
     "db:reset": "yarn prisma migrate reset",
