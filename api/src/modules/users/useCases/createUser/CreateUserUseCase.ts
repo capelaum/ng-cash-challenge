@@ -26,7 +26,7 @@ export class CreateUserUseCase {
       throw new AppError('Nome de usuário deve ter no mínimo 3 caracteres.')
     }
 
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
 
     if (!passwordRegex.test(password)) {
       throw new AppError(
