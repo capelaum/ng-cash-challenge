@@ -1,21 +1,15 @@
+import { db } from 'database/prismaClient'
 import express from 'express'
 import morgan from 'morgan'
-import { db } from './database/prismaClient'
 
 const app = express()
 
 app.use(morgan('dev'))
 
 app.get('/', async (req, res) => {
-  const allPosts = await db.post.findMany()
+  const users = await db.user.findMany()
 
-  const test = 'Test 777'
-
-  res.json({
-    allPosts,
-    test,
-    message: 'testeeee'
-  })
+  res.json(users)
 })
 
 const port = Number(process.env.PORT ?? 3333)
