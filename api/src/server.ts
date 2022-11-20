@@ -15,16 +15,21 @@ app.use(cors())
 
 app.use(routes)
 
-app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
-  if (err instanceof AppError) {
-    return res.status(err.statusCode).json({ message: err.message })
-  }
+app.use(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async (error: Error, req: Request, res: Response, next: NextFunction) => {
+    if (error instanceof AppError) {
+      return res.status(error.statusCode).json({
+        message: error.message
+      })
+    }
 
-  return res.status(500).json({
-    status: 'error',
-    message: `Internal server error - ${err.message}`
-  })
-})
+    return res.status(500).json({
+      status: 'error',
+      message: `Internal server error - ${error.message}`
+    })
+  }
+)
 
 const port = Number(process.env.PORT ?? 3333)
 
