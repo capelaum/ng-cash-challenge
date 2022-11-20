@@ -7,7 +7,11 @@ const app = express()
 app.use(morgan('dev'))
 
 app.get('/', async (req, res) => {
-  const users = await db.user.findMany()
+  const users = await db.user.findMany({
+    where: {
+      username: 'fowfdi'
+    }
+  })
 
   res.json(users)
 })
