@@ -12,32 +12,18 @@ async function hashPassword(password: string) {
   return hashedPassword
 }
 
-function generateRandomUsername() {
-  const randomUsername = Math.random().toString(36).substring(7)
-
-  return randomUsername
-}
-
 async function main() {
   if ((await db.user.count()) === 0) {
-    for (let i = 0; i < 10; i++) {
-      const createdUser = await db.user.create({
+    for (let i = 1; i <= 10; i++) {
+      await db.user.create({
         data: {
-          username: generateRandomUsername(),
-          password: await hashPassword('password')
-        }
-      })
-
-      const account = await db.account.create({
-        data: {
-          balance: 100
-        }
-      })
-
-      await db.user.update({
-        where: { id: createdUser.id },
-        data: {
-          accountId: account.id
+          username: `user_${i}`,
+          password: await hashPassword('password'),
+          account: {
+            create: {
+              balance: 100
+            }
+          }
         }
       })
     }
