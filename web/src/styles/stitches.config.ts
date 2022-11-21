@@ -15,6 +15,9 @@ export const {
       white: '#fff',
       black: '#000',
 
+      red600: '#dc2626',
+      red500: '#ef4444',
+
       gray900: '#171717',
       gray800: '#262626',
       gray700: '#404040',
@@ -26,16 +29,16 @@ export const {
       gray100: '#f5f5f5',
       gray50: '#fafafa',
 
-      blue900: '#0c4a6e',
-      blue800: '#075985',
-      blue700: '#0369a1',
-      blue600: '#0284c7',
-      blue500: '#0ea5e9',
-      blue400: '#38bdf8',
-      blue300: '#7dd3fc',
-      blue200: '#bae6fd',
-      blue100: '#e0f2fe',
-      blue50: '#f0f9ff',
+      sky900: '#0c4a6e',
+      sky800: '#075985',
+      sky700: '#0369a1',
+      sky600: '#0284c7',
+      sky500: '#0ea5e9',
+      sky400: '#38bdf8',
+      sky300: '#7dd3fc',
+      sky200: '#bae6fd',
+      sky100: '#e0f2fe',
+      sky50: '#f0f9ff',
     },
 
     space: {
@@ -64,6 +67,7 @@ export const {
 
     shadows: {
       default: '4px 4px 8px rgba(0, 0, 0, 0.25)',
+      sm: '4px 4px 12px rgba(0, 0, 0, 0.25)',
     },
 
     radii: {

@@ -7,6 +7,7 @@ export const BodyWrapper = styled('div', {
   justifyContent: 'center',
   minHeight: '100vh',
   height: '100%',
+  position: 'relative',
 
   variants: {
     theme: {

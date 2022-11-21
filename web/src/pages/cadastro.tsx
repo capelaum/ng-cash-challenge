@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>NG.CASH | Entrar</title>
+        <title>NG.CASH | Cadastro</title>
       </Head>
 
       <Layout>
@@ -30,12 +30,12 @@ export default function Home() {
 
         <ContentWrapper>
           <HeaderWrapper>
-            <Heading>Entrar</Heading>
+            <Heading>Cadastro</Heading>
 
             <Text size="sm">
-              Não possui conta?{' '}
-              <Link href="/cadastro" title="Cadastre-se">
-                Cadastre-se
+              Já possui conta?{' '}
+              <Link href="/" title="Entre com sua conta!">
+                Entre com sua conta!
               </Link>
             </Text>
           </HeaderWrapper>
@@ -47,7 +47,7 @@ export default function Home() {
             <InputPassword required />
 
             <Button title="Entrar" isFullWidth>
-              Entrar
+              Cadastrar
             </Button>
           </FormWrapper>
         </ContentWrapper>
