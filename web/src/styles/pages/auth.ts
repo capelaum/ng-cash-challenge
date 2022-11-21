@@ -16,19 +16,6 @@ export const ContentWrapper = styled('section', {
   width: '100%',
   maxWidth: '400px',
   marginTop: '2rem',
-
-  a: {
-    textDecoration: 'none',
-    color: '$gray900',
-    fontWeight: 600,
-
-    transition: 'all 0.2s ease-out',
-
-    '&:hover': {
-      textDecoration: 'underline',
-      textUnderlineOffset: '0.2rem',
-    },
-  },
 })
 
 export const HeaderWrapper = styled('header', {

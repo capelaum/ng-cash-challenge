@@ -13,6 +13,9 @@ services:
     volumes:
       - ./web/src:/app/web/src
       - ./web/public:/app/web/public
+    environment:
+      NEXT_PUBLIC_API_URL: http://host.docker.internal:3333/api
+      NEXT_PUBLIC_AUTH_COOKIE_NAME: '@ng-cash-challenge:token'
     networks:
       - ng_cash_network
     depends_on:

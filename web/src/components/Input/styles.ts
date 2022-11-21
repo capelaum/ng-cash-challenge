@@ -33,7 +33,7 @@ export const InputWrapper = styled('div', {
 
     error: {
       true: {
-        borderBottom: '2px solid $red500',
+        borderBottom: '1px solid $red500 !important',
 
         '& > div > svg': {
           color: '$red500',
@@ -60,41 +60,6 @@ export const InputWrapper = styled('div', {
     theme: 'light',
     error: false,
   },
-
-  compoundVariants: [
-    {
-      theme: 'light',
-      error: true,
-
-      css: {
-        outline: '2px solid $red600',
-
-        '& > div > svg': {
-          color: '$red600',
-        },
-
-        '&:focus-within': {
-          outline: '2px solid $red600',
-        },
-      },
-    },
-    {
-      theme: 'dark',
-      error: true,
-
-      css: {
-        outline: '2px solid $red500',
-
-        '& > div > svg': {
-          color: '$red500',
-        },
-
-        '&:focus-within': {
-          outline: '2px solid $red500',
-        },
-      },
-    },
-  ],
 
   '@bp3': {
     padding: '0.25rem 1rem',

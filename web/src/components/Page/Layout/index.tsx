@@ -1,3 +1,4 @@
+import { ButtonToggleTheme } from 'components/Button/ButtonToggleTheme'
 import { useTheme } from 'contexts/ThemeContext'
 import { ReactNode } from 'react'
 import { BodyWrapper, Main } from './styles'
@@ -11,6 +12,8 @@ export function Layout({ children }: AppLayoutProps) {
 
   return (
     <BodyWrapper theme={theme}>
+      <ButtonToggleTheme />
+
       <Main>{children}</Main>
     </BodyWrapper>
   )
