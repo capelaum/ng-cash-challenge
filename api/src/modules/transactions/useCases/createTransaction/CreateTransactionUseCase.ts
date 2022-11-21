@@ -57,6 +57,7 @@ export class CreateTransactionUseCase {
     }
 
     const updatedDebitedAccountBalance = debitedAccountBalance - value
+    const updatedCreditAccountBalance = Number(creditedAccount.balance) + value
 
     const transaction = await db.$transaction([
       db.account.update({
@@ -65,6 +66,14 @@ export class CreateTransactionUseCase {
         },
         data: {
           balance: updatedDebitedAccountBalance
+        }
+      }),
+      db.account.update({
+        where: {
+          id: creditedAccount.id
+        },
+        data: {
+          balance: updatedCreditAccountBalance
         }
       }),
       db.transaction.create({
