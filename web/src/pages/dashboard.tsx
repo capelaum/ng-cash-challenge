@@ -1,13 +1,22 @@
 import { Heading } from 'components/Heading'
 import { Layout } from 'components/Page/Layout'
+import { TableTransactions } from 'components/TableTransactions'
+import { Text } from 'components/Text'
 import { useAuth } from 'contexts/AuthContext'
 import { getCookie } from 'cookies-next'
 import { getAuthUser } from 'libs/auth/api'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import { ContentWrapper } from 'styles/pages/dashboard'
 
 export default function Dashboard() {
   const { authUser } = useAuth()
+
+  if (!authUser) {
+    return <p>Carregando...</p>
+  }
+
+  const { username, account, createdAt } = authUser
 
   return (
     <>
@@ -16,9 +25,24 @@ export default function Dashboard() {
       </Head>
 
       <Layout>
-        <Heading>Dashboard</Heading>
+        <ContentWrapper>
+          <Heading size="sm">Olá, {username}</Heading>
 
-        <p>Olá, {authUser?.username}</p>
+          <Text>
+            <strong>Data de cadastro:</strong> {createdAt}
+          </Text>
+
+          <Text>
+            <strong>Conta: </strong>
+            {account.id}
+          </Text>
+
+          <Text>
+            <strong>Saldo:</strong> {account.formattedBalance}
+          </Text>
+
+          <TableTransactions />
+        </ContentWrapper>
       </Layout>
     </>
   )

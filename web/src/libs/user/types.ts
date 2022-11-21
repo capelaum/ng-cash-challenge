@@ -6,5 +6,6 @@ export type User = {
   account: {
     id: string
     balance: number
+    formattedBalance: string
   }
 }
