@@ -18,7 +18,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   accountId String  @unique
-  account   Account @relation(fields: [accountId], references: [id])
+  account   Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
 
   @@index([username], name: "username")
   @@map(name: "users")
@@ -40,10 +40,10 @@ model Transaction {
   value     Decimal  @db.Decimal(10, 2)
   createdAt DateTime @default(now())
 
-  debitedAccountId  String
-  creditedAccountId String
-  debitedAccount    Account @relation(fields: [debitedAccountId], references: [id], name: "DebitedAccount")
-  creditedAccount   Account @relation(fields: [creditedAccountId], references: [id], name: "CreditedAccount")
+  debitedAccountId  String?
+  creditedAccountId String?
+  debitedAccount    Account? @relation(fields: [debitedAccountId], references: [id], name: "DebitedAccount", onDelete: SetNull)
+  creditedAccount   Account? @relation(fields: [creditedAccountId], references: [id], name: "CreditedAccount", onDelete: SetNull)
 
   @@map(name: "transactions")
 }
