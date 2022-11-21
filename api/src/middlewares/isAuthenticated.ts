@@ -24,15 +24,16 @@ export async function isAuthenticated(
   }
 
   try {
-    const { sub: userId } = verify(
-      token,
-      process.env.JWT_TOKEN ?? 'secret'
-    ) as IPayload
+    const secret = process.env.JWT_SECRET ?? 'secret'
+
+    const { sub: userId } = verify(token, secret) as IPayload
 
     req.userId = userId
 
     return next()
   } catch (error) {
+    console.log('💥 ~ error', error)
+
     throw new AppError('Você não tem permissão para acessar esse recurso.', 401)
   }
 }

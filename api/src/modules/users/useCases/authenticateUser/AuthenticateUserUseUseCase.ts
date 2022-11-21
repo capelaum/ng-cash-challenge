@@ -29,7 +29,9 @@ export class AuthenticateUserUseUseCase {
       throw new AppError('Nome de usuário ou senha incorretos.')
     }
 
-    const token = sign({ username }, process.env.JWT_SECRET ?? 'secret', {
+    const secret = process.env.JWT_SECRET ?? 'secret'
+
+    const token = sign({ username }, secret, {
       subject: user.id,
       expiresIn: '1d'
     })
