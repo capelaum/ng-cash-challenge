@@ -5,6 +5,7 @@ WORKDIR /app/web
 COPY package.json .
 COPY yarn.lock .
 COPY next.config.js .
+COPY tsconfig.json .
 
 COPY src/ ./src
 COPY public ./public
