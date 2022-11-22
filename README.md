@@ -41,7 +41,7 @@ Após o seed, terá disponível 10 usuários com o seguinte formato:
 
 ## Insomnia
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcapelaum%2Fng-cash-challeng%2Fmain%2Finsomnia.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=NG%20Cash%20Challenge%20Capelaum&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcapelaum%2Fng-cash-challenge%2Fmain%2Finsomnia.json%3Ftoken%3DGHSAT0AAAAAABZFB2N4RZQWOKFPKTBDYNI4Y34OKRQ)
 
 ## Tasks
 
