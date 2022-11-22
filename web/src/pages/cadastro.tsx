@@ -61,13 +61,13 @@ export default function Register() {
       </Head>
 
       <Layout>
-        <Image
-          src={theme === 'light' ? ng_black : ng_white}
-          alt="NG.CASH Logo"
-          width={100}
-        />
-
         <ContentWrapper>
+          <Image
+            src={theme === 'light' ? ng_black : ng_white}
+            alt="NG.CASH Logo"
+            width={100}
+          />
+
           <HeaderWrapper>
             <Heading>Cadastro</Heading>
 

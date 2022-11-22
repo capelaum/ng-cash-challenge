@@ -40,7 +40,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const { theme } = useTheme()
 
-  const { setUserLoggedOut } = useTransactionsStore()
+  const { setUserLoggedOut, transactions } = useTransactionsStore()
 
   const isAuthenticaded = !!authUser
 
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     updateAuthUser()
-  }, [])
+  }, [transactions])
 
   const register = async (registerFormData: AuthFormData) => {
     setIsAuthLoading(true)

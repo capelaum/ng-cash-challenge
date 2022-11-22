@@ -7,7 +7,8 @@ export const FooterWrapper = styled('footer', {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '2rem',
-  marginTop: '6rem',
+  marginTop: 'auto',
+  paddingTop: '6rem',
   paddingBottom: '0.25rem',
 })
 
