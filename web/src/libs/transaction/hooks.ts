@@ -1,7 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTheme } from 'contexts/ThemeContext'
-import { getApiErrorMessage } from 'utils/apiErrors'
-import { showToastError } from 'utils/toasts'
 import { createTransaction, getTransactions } from './api'
 import { useTransactionsStore } from './store'
 
@@ -15,19 +13,14 @@ export const useTransactionsQuery = () => {
   })
 }
 
-export const useUpdateModule = () => {
+export const useTransactions = () => {
   const { theme } = useTheme()
 
   const queryClient = useQueryClient()
 
   const createTransactionMutation = useMutation(createTransaction, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['trail'])
-    },
-    onError: (error) => {
-      const errorMessage = getApiErrorMessage(error)
-
-      showToastError(theme, errorMessage)
+      queryClient.invalidateQueries(['transactions'])
     },
   })
 

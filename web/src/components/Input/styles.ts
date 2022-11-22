@@ -92,7 +92,6 @@ export const InputErrorMessage = styled('span', {
   display: 'block',
   fontSize: '$xs',
   marginTop: '$xs',
-  paddingLeft: '1rem',
 
   variants: {
     theme: {

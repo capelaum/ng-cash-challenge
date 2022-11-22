@@ -1,3 +1,4 @@
+import { DialogCreateTransaction } from 'components/Dialog/DialogCreateTransaction'
 import { Heading } from 'components/Heading'
 import { Layout } from 'components/Page/Layout'
 import { TableTransactions } from 'components/TableTransactions'
@@ -7,7 +8,7 @@ import { getCookie } from 'cookies-next'
 import { getAuthUser } from 'libs/auth/api'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { ContentWrapper } from 'styles/pages/dashboard'
+import { ButtonWrapper, ContentWrapper } from 'styles/pages/dashboard'
 
 export default function Dashboard() {
   const { authUser } = useAuth()
@@ -40,6 +41,10 @@ export default function Dashboard() {
           <Text>
             <strong>Saldo:</strong> {account.formattedBalance}
           </Text>
+
+          <ButtonWrapper>
+            <DialogCreateTransaction />
+          </ButtonWrapper>
 
           <TableTransactions />
         </ContentWrapper>

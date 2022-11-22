@@ -10,3 +10,9 @@ export const ContentWrapper = styled('section', {
     marginBottom: '3rem',
   },
 })
+
+export const ButtonWrapper = styled('div', {
+  display: 'flex',
+  marginTop: '2rem',
+  gap: '1.5rem',
+})
