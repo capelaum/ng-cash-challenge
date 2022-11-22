@@ -1,21 +1,23 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useTheme } from 'contexts/ThemeContext'
 import { createTransaction, getTransactions } from './api'
 import { useTransactionsStore } from './store'
+import { GetTransactionsFilters } from './types'
 
-export const useTransactionsQuery = () => {
+export const useTransactionsQuery = (filters: GetTransactionsFilters) => {
   const { setTransactions } = useTransactionsStore()
 
-  return useQuery(['transactions'], () => getTransactions(), {
-    onSuccess: (data) => {
-      setTransactions(data)
-    },
-  })
+  return useQuery(
+    ['transactions', filters],
+    async () => getTransactions(filters),
+    {
+      onSuccess: (transactions) => {
+        setTransactions(transactions)
+      },
+    }
+  )
 }
 
 export const useTransactions = () => {
-  const { theme } = useTheme()
-
   const queryClient = useQueryClient()
 
   const createTransactionMutation = useMutation(createTransaction, {

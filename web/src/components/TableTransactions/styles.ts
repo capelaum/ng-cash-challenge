@@ -6,14 +6,23 @@ export const TableTransactionsSection = styled('section', {
   gap: '$md',
 
   marginTop: '5rem',
+  overflowX: 'auto',
+})
 
-  h1: {},
+export const TableHeaderWrapper = styled('header', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  gap: '2rem',
+
+  '@bp4': {
+    flexDirection: 'column',
+  },
 })
 
 export const StyledTable = styled('table', {
   width: '100%',
   borderCollapse: 'collapse',
-  minWidth: 800,
+  minWidth: 750,
 
   th: {
     padding: '1rem',
@@ -50,8 +59,8 @@ export const StyledTable = styled('table', {
     theme: {
       light: {
         th: {
-          color: '$gray50',
-          backgroundColor: '$gray800',
+          color: '$gray900',
+          backgroundColor: '$gray300',
         },
 
         td: {
@@ -62,8 +71,8 @@ export const StyledTable = styled('table', {
       },
       dark: {
         th: {
-          color: '$gray900',
-          backgroundColor: '$gray50',
+          color: '$gray50',
+          backgroundColor: '$gray700',
         },
 
         td: {

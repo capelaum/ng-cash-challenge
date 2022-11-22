@@ -21,3 +21,9 @@ export type CreateTransaction = {
   username: string
   value: number
 }
+
+export type GetTransactionsFilters = {
+  createdAt?: string
+  isOnlyCashIn?: boolean
+  isOnlyCashOut?: boolean
+}

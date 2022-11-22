@@ -14,8 +14,8 @@ export class ListTransactionsController {
     const transactions = await listTransactionsUseCase.execute({
       userId,
       createdAt,
-      isOnlyCashOut,
-      isOnlyCashIn
+      isOnlyCashOut: isOnlyCashOut === 'true',
+      isOnlyCashIn: isOnlyCashIn === 'true'
     } as IListTransactions)
 
     return res.json(transactions)
