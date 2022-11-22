@@ -18,7 +18,7 @@ async function main() {
       await db.user.create({
         data: {
           username: `user_${i}`,
-          password: await hashPassword('password'),
+          password: await hashPassword('Password123'),
           account: {
             create: {
               balance: 100

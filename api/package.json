@@ -12,7 +12,10 @@
     "db:console": "docker compose exec postgres psql -h localhost -U docker -d ng_cash_dev",
     "db:migrate": "yarn prisma migrate dev",
     "db:reset": "yarn prisma migrate reset",
-    "db:seed": "yarn prisma db seed"
+    "db:seed": "yarn prisma db seed",
+    "docker:db:migrate": "docker compose exec api yarn db:migrate",
+    "docker:db:reset": "docker compose exec api yarn db:reset",
+    "docker:db:seed": "docker compose exec api yarn db:seed"
   },
   "prisma": {
     "seed": "ts-node prisma/scripts/seed.ts"
