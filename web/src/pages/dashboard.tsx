@@ -1,5 +1,7 @@
+import { ButtonLogout } from 'components/Button/ButtonLogout'
 import { DialogCreateTransaction } from 'components/Dialog/DialogCreateTransaction'
 import { Heading } from 'components/Heading'
+import { Loader } from 'components/Loader'
 import { Layout } from 'components/Page/Layout'
 import { TableTransactions } from 'components/TableTransactions'
 import { Text } from 'components/Text'
@@ -14,7 +16,7 @@ export default function Dashboard() {
   const { authUser } = useAuth()
 
   if (!authUser) {
-    return <p>Carregando...</p>
+    return <Loader />
   }
 
   const { username, account, createdAt } = authUser
@@ -28,6 +30,8 @@ export default function Dashboard() {
       <Layout>
         <ContentWrapper>
           <Heading size="sm">Olá, {username}</Heading>
+
+          <ButtonLogout />
 
           <Text>
             <strong>Data de cadastro:</strong> {createdAt}
