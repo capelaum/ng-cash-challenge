@@ -24,6 +24,7 @@ export const StyledTrigger = styled(SelectTrigger, {
   lineHeight: 1,
   gap: 8,
   cursor: 'pointer',
+  minWidth: 150,
 
   transition: 'all 0.3s ease-in-out',
 

@@ -15,7 +15,7 @@ import {
   StyledViewport,
 } from './styles'
 
-type ContentType = {
+export type ContentType = {
   value: string
   text: string
 }

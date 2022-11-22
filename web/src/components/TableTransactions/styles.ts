@@ -9,9 +9,8 @@ export const TableTransactionsSection = styled('section', {
   overflowX: 'auto',
 })
 
-export const TableHeaderWrapper = styled('header', {
+export const FiltersWrapper = styled('div', {
   display: 'flex',
-  justifyContent: 'space-between',
   gap: '2rem',
 
   '@bp4': {

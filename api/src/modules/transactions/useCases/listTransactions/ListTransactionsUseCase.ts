@@ -8,11 +8,6 @@ export interface IListTransactions {
   isOnlyCashIn?: boolean
 }
 
-interface CreatedAtFilter {
-  gte?: Date
-  lt?: Date
-}
-
 export class ListTransactionsUseCase {
   async execute({
     userId,
@@ -32,20 +27,6 @@ export class ListTransactionsUseCase {
       throw new AppError('Conta não encontrada.', 404)
     }
 
-    const createdAtFilter: CreatedAtFilter = {}
-
-    if (createdAt) {
-      // create createdAtDate with createdAt at UTC Timezone
-      const createdAtDate = new Date(createdAt)
-
-      const nextDayDate = new Date(
-        new Date(createdAt).setDate(createdAtDate.getDate() + 1)
-      )
-
-      createdAtFilter.gte = createdAtDate
-      createdAtFilter.lt = nextDayDate
-    }
-
     const transactionTypeFilter = [
       {
         debitedAccountId: account.id
@@ -63,10 +44,9 @@ export class ListTransactionsUseCase {
       transactionTypeFilter.splice(0, 1)
     }
 
-    const transactions = await db.transaction.findMany({
+    const transactionsInitial = await db.transaction.findMany({
       where: {
-        OR: transactionTypeFilter,
-        createdAt: createdAtFilter
+        OR: transactionTypeFilter
       },
       select: {
         id: true,
@@ -97,6 +77,22 @@ export class ListTransactionsUseCase {
         createdAt: 'desc'
       }
     })
+
+    const transactions = transactionsInitial.map(transaction => ({
+      ...transaction,
+      createdAt: new Date(transaction.createdAt).toLocaleDateString('pt-BR', {
+        timeZone: 'America/Sao_Paulo'
+      }),
+      value: Number(transaction.value)
+    }))
+
+    if (createdAt) {
+      const filteredTransactions = transactions.filter(
+        transaction => transaction.createdAt === createdAt
+      )
+
+      return filteredTransactions
+    }
 
     return transactions
   }

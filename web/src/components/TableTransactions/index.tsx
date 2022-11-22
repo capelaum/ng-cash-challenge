@@ -1,16 +1,13 @@
 import { Heading } from 'components/Heading'
 import { Loader } from 'components/Loader'
+import { SelectTransactionCreatedAt } from 'components/Select/SelectTransactionCreatedAt'
 import { SelectTransactionType } from 'components/Select/SelectTransactionType'
 import { useTheme } from 'contexts/ThemeContext'
 import { useTransactionsQuery } from 'libs/transaction/hooks'
 import { useTransactionsStore } from 'libs/transaction/store'
 import { GetTransactionsFilters } from 'libs/transaction/types'
 import { useState } from 'react'
-import {
-  StyledTable,
-  TableHeaderWrapper,
-  TableTransactionsSection,
-} from './styles'
+import { FiltersWrapper, StyledTable, TableTransactionsSection } from './styles'
 
 export function TableTransactions() {
   const [transactionsFilters, setTransactionsFilters] =
@@ -28,15 +25,19 @@ export function TableTransactions() {
 
   return (
     <TableTransactionsSection>
-      <TableHeaderWrapper>
-        <Heading asChild size="lg">
-          <h1>Transações</h1>
-        </Heading>
+      <Heading asChild size="lg">
+        <h1>Transações</h1>
+      </Heading>
+
+      <FiltersWrapper>
+        <SelectTransactionCreatedAt
+          setTransactionsFilters={setTransactionsFilters}
+        />
 
         <SelectTransactionType
           setTransactionsFilters={setTransactionsFilters}
         />
-      </TableHeaderWrapper>
+      </FiltersWrapper>
 
       {isLoading ? (
         <Loader />

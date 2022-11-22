@@ -1,5 +1,5 @@
 import { api } from 'services/api'
-import { currencyFormatter, dateFormatter } from 'utils/formatters'
+import { currencyFormatter } from 'utils/formatters'
 import { CreateTransaction, GetTransactionsFilters, Transaction } from './types'
 
 export const getTransactions = async ({
@@ -13,9 +13,8 @@ export const getTransactions = async ({
 
   return data.map((transaction: Transaction) => ({
     ...transaction,
-    createdAt: dateFormatter(transaction.createdAt),
-    value: Number(transaction.value),
-    formattedValue: currencyFormatter(Number(transaction.value)),
+    createdAt: transaction.createdAt,
+    formattedValue: currencyFormatter(transaction.value),
   }))
 }
 

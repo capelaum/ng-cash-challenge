@@ -9,7 +9,7 @@ interface SelectTransactionTypeProps {
 const transactionTypes = [
   {
     value: 'all',
-    text: 'Tipo de transação',
+    text: 'Tipo',
   },
   {
     value: 'cashIn',
@@ -60,7 +60,7 @@ export function SelectTransactionType({
       items={transactionTypes}
       title="Selecione o tipo de transação"
       ariaLabel="Selecione o tipo de transação"
-      placeholder="Tipo de transação"
+      placeholder="Tipo"
     />
   )
 }
