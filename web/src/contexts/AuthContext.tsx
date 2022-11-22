@@ -2,6 +2,7 @@ import { deleteCookie, getCookie, setCookie } from 'cookies-next'
 import { getAuthUser } from 'libs/auth/api'
 import { AuthFormData } from 'libs/auth/schemas'
 import { LoginResponse, RegisterResponse } from 'libs/auth/types'
+import { useTransactionsStore } from 'libs/transaction/store'
 import { User } from 'libs/user/types'
 import Router from 'next/router'
 import {
@@ -38,6 +39,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isAuthLoading, setIsAuthLoading] = useState(false)
 
   const { theme } = useTheme()
+
+  const { setUserLoggedOut } = useTransactionsStore()
 
   const isAuthenticaded = !!authUser
 
@@ -132,6 +135,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       Router.push('/')
 
       showToastSuccess(theme, 'Logout realizado com sucesso. Volte sempre!')
+
+      setUserLoggedOut(true)
 
       setAuthUser(null)
       setIsAuthLoading(false)

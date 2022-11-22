@@ -1,19 +1,27 @@
+import { ng_black, ng_white } from 'components/@constants'
 import { ButtonLogout } from 'components/Button/ButtonLogout'
 import { DialogCreateTransaction } from 'components/Dialog/DialogCreateTransaction'
 import { Heading } from 'components/Heading'
 import { Loader } from 'components/Loader'
 import { Layout } from 'components/Page/Layout'
 import { TableTransactions } from 'components/TableTransactions'
-import { Text } from 'components/Text'
 import { useAuth } from 'contexts/AuthContext'
+import { useTheme } from 'contexts/ThemeContext'
 import { getCookie } from 'cookies-next'
 import { getAuthUser } from 'libs/auth/api'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { ButtonWrapper, ContentWrapper } from 'styles/pages/dashboard'
+import Image from 'next/image'
+import {
+  Badge,
+  BadgesWrapper,
+  ButtonWrapper,
+  ContentWrapper,
+} from 'styles/pages/dashboard'
 
 export default function Dashboard() {
   const { authUser } = useAuth()
+  const { theme } = useTheme()
 
   if (!authUser) {
     return <Loader />
@@ -29,22 +37,30 @@ export default function Dashboard() {
 
       <Layout>
         <ContentWrapper>
+          <Image
+            src={theme === 'light' ? ng_black : ng_white}
+            alt="NG.CASH Logo"
+            width={100}
+          />
+
           <Heading size="sm">Olá, {username}</Heading>
 
           <ButtonLogout />
 
-          <Text>
-            <strong>Data de cadastro:</strong> {createdAt}
-          </Text>
+          <BadgesWrapper>
+            <Badge theme={theme}>
+              <strong>Data de cadastro:</strong> {createdAt}
+            </Badge>
 
-          <Text>
-            <strong>Conta: </strong>
-            {account.id}
-          </Text>
+            <Badge theme={theme}>
+              <strong>Conta: </strong>
+              {account.id}
+            </Badge>
 
-          <Text>
-            <strong>Saldo:</strong> {account.formattedBalance}
-          </Text>
+            <Badge theme={theme}>
+              <strong>Saldo:</strong> {account.formattedBalance}
+            </Badge>
+          </BadgesWrapper>
 
           <ButtonWrapper>
             <DialogCreateTransaction />

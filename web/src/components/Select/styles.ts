@@ -41,12 +41,10 @@ export const StyledTrigger = styled(SelectTrigger, {
       light: {
         backgroundColor: '$gray900',
         color: '$gray50',
-        boxShadow: '$default',
       },
       dark: {
         backgroundColor: '$gray50',
         color: '$gray900',
-        boxShadow: 'none',
       },
     },
   },

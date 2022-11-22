@@ -4,8 +4,13 @@ import { useTransactionsStore } from './store'
 import { GetTransactionsFilters, Transaction } from './types'
 
 export const useTransactionsQuery = (filters: GetTransactionsFilters) => {
-  const { setTransactions, setTransactionsDates, transactionsDates } =
-    useTransactionsStore()
+  const {
+    setTransactions,
+    setTransactionsDates,
+    transactionsDates,
+    userLoggedOut,
+    setUserLoggedOut,
+  } = useTransactionsStore()
 
   return useQuery(
     ['transactions', filters],
@@ -18,8 +23,12 @@ export const useTransactionsQuery = (filters: GetTransactionsFilters) => {
           new Set(transactions.map((transaction) => transaction.createdAt))
         )
 
-        if (transactionsDates.length === 0) {
+        if (transactionsDates.length === 0 || userLoggedOut) {
           setTransactionsDates(getTransactionsDates)
+
+          if (userLoggedOut) {
+            setUserLoggedOut(false)
+          }
         }
       },
     }

@@ -1,6 +1,7 @@
 import { ButtonToggleTheme } from 'components/Button/ButtonToggleTheme'
 import { useTheme } from 'contexts/ThemeContext'
 import { ReactNode } from 'react'
+import { Footer } from '../Footer'
 import { BodyWrapper, Main } from './styles'
 
 interface AppLayoutProps {
@@ -15,6 +16,8 @@ export function Layout({ children }: AppLayoutProps) {
       <ButtonToggleTheme />
 
       <Main>{children}</Main>
+
+      <Footer />
     </BodyWrapper>
   )
 }
