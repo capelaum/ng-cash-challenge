@@ -9,19 +9,17 @@ Estruturar uma aplicação web fullstack, dockerizada, cujo objetivo seja possib
 Na pasta raiz do projeto, rodar os comandos:
 
 ```bash
-# Entrar no diretorio web e instalar as dependencias
-cd web
-yarn
-
-# Entrar no diretorio api e instalar as dependencias
-cd api
-yarn
-
 # Buid dos containers
 docker compose build
 
 # Sobre os containers
 docker compose up -d
+```
+
+Dentro da pasta api
+
+```bash
+cd api
 
 # Realiza as migrations no BD Postgres do container
 yarn docker:db:migrate
@@ -40,6 +38,10 @@ Após o seed, terá disponível 10 usuários com o seguinte formato:
 
 - username `user_i`
 - Senha: `Password123`
+
+## Insomnia
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcapelaum%2Fng-cash-challeng%2Fmain%2Finsomnia.json)
 
 ## Tasks
 
